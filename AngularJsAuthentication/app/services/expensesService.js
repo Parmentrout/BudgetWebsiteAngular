@@ -11,19 +11,35 @@ app.factory('expensesService', ['$http', function ($http) {
         });
     };
 
-    var _createExpense = function (expense) {
+    var _createExpense = function (model) {
         var config = {
-            params: {
-                expense
+            headers: {
+                'Content-Type': 'application/json'
             }
         };
-        return $http.post(serviceBase + 'api/expenses/CreateExpense', {'parameter': expense}, config).then(function (results) {
+
+        var data = model;
+        return $http.post(serviceBase + 'api/expenses/CreateExpense',data, config).then(function (results) {
             return results;
         });
     };
+
+    var _deleteExpense = function (model) {
+        var config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
+
+        var data = model;
+        return $http.post(serviceBase + 'api/expenses/DeleteExpense', data, config).then(function (results) {
+            return results;
+        });
+    }
  
     expensesServiceFactory.getExpenses = _getExpenses;
     expensesServiceFactory.createExpense = _createExpense;
+    expensesServiceFactory.deleteExpense = _deleteExpense;
  
     return expensesServiceFactory;
  

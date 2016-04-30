@@ -12,8 +12,14 @@ namespace AngularJsAuthentication.Repository.Repository
         readonly IBudgetContext _context = new BudgetContext();
         public async Task Add(Expense entity)
         {
-            _context.Expenses.Add(entity);
-            await _context.SaveChangesAsync();
+            try {
+                _context.Expenses.Add(entity);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception e)
+            {
+
+            }
         }
 
         public IQueryable<Expense> All()

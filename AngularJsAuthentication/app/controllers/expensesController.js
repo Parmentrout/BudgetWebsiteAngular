@@ -46,41 +46,30 @@ app.controller('expensesController', [
                 });
 
 
-            $scope.submitData = function(expense, resultVarName) {
+            $scope.submitData = function(model) {
               
-                expense.category = expense.categoryWrapper.name;
+                model.Category = model.categoryWrapper.name;
 
                 $scope.gridOptions.data.push({
-                    "charge": expense.charge,
-                    "amount": expense.amount,
-                    "category": expense.category,
+                    "charge": model.Charge,
+                    "amount": model.Amount,
+                    "category": model.Category,
                     "modifiedDate": GetCurrentDate()
                 });
 
-                expensesService.createExpense(expense).then(function() {
+                expensesService.createExpense(model).then(function () {
                     toastr["success"]("Saved Expense!");
                 });
-
-                //$http.post("/api/orders/PostExpense", { 'parameter': expense }, config)
-                //    .success(function() {
-                //        toastr["success"]("Saved Expense!");
-                //    });
             }
 
             $scope.Delete = function(row) {
                 var index = $scope.gridOptions.data.indexOf(row.entity);
                 $scope.gridOptions.data.splice(index, 1);
-                var expense = row.entity;
-                var config = {
-                    params: {
-                        expense
-                    }
-                };
-
-                $http.post("/api/orders/DeleteExpense", { 'parameter': expense }, config)
-                    .success(function() {
-                        toastr["error"]("Deleted!");
-                    });
+                var currentExpense = row.entity;
+               
+                expensesService.deleteExpense(currentExpense).then(function () {
+                    toastr["success"]("Deleted Expense");
+                })
             };
         }]);
 

@@ -26,12 +26,19 @@ namespace AngularJsAuthentication.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IHttpActionResult> PostExpense(Expense parameter)
         {
-            //Expense dbExpense = new Expense() { Amount = parameter.Amount, Category = parameter.Category, Charge = parameter.Charge, ModifiedDate = DateTime.Now };
-
+            parameter.ModifiedDate = DateTime.Now;
             await _repository.Add(parameter);
 
+            return Ok();
+        }
+
+        [HttpPost]
+        public async Task<IHttpActionResult> DeleteExpense(Expense parameter)
+        {
+            await _repository.DeleteAsync(parameter.Id);
             return Ok();
         }
     }
