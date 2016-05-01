@@ -171,6 +171,7 @@
     <Content Include="app\controllers\loginController.js" />
     <Content Include="app\controllers\expensesController.js" />
     <Content Include="app\controllers\signupController.js" />
+    <Content Include="app\controllers\templatesController.js" />
     <Content Include="app\services\authInterceptorService.js" />
     <Content Include="app\services\authService.js" />
     <Content Include="app\services\expensesService.js" />
@@ -178,6 +179,7 @@
     <Content Include="app\views\login.html" />
     <Content Include="app\views\expenses.html" />
     <Content Include="app\views\signup.html" />
+    <Content Include="app\views\templates.html" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />

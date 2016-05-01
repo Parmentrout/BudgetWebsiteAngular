@@ -20,7 +20,7 @@ app.controller('expensesController', [
                     field: 'modifiedDate'
                 }, {
                     name: 'Delete',
-                    cellTemplate: '<button class="btn btn-small" ng-click="grid.appScope.Delete(row)">Delete</button>'
+                    cellTemplate: '<span class="glyphicon glyphicon-trash" ng-click="grid.appScope.Delete(row)"></span>'//'<button class="btn btn-small" ng-click="grid.appScope.Delete(row)">Delete</button>'
                 }
             ];
 
@@ -36,7 +36,11 @@ app.controller('expensesController', [
                 { name: 'Gas' },
                 { name: 'Coffee' },
                 { name: 'Baby' },
-                { name: 'Misc' }
+                { name: 'Misc' },
+                { name: 'Home' },
+                { name: 'Restaurants' },
+                { name: 'Charity' },
+                { name: 'Clothing/Wellness'}
             ];
          
             expensesService.getExpenses().then(function (results) {
@@ -46,21 +50,17 @@ app.controller('expensesController', [
                 });
 
 
-            $scope.submitData = function(model) {
-              
+            $scope.submitData = function (model){
+
                 model.Category = model.categoryWrapper.name;
 
-                $scope.gridOptions.data.push({
-                    "charge": model.Charge,
-                    "amount": model.Amount,
-                    "category": model.Category,
-                    "modifiedDate": GetCurrentDate()
-                });
+                expensesService.createExpense(model).then(function (results) {
 
-                expensesService.createExpense(model).then(function () {
+                    $scope.gridOptions.data.push(results.data);
+
                     toastr["success"]("Saved Expense!");
                 });
-            }
+            };
 
             $scope.Delete = function(row) {
                 var index = $scope.gridOptions.data.indexOf(row.entity);
@@ -69,7 +69,7 @@ app.controller('expensesController', [
                
                 expensesService.deleteExpense(currentExpense).then(function () {
                     toastr["success"]("Deleted Expense");
-                })
+                });
             };
         }]);
 
@@ -92,15 +92,7 @@ function GetCurrentDate() {
 
     return today;
 }
-//$scope.orders = [];
 
-    //ordersService.getOrders().then(function (results) {
-
-    //    $scope.orders = results.data;
-
-    //}, function (error) {
-    //    //alert(error.data.message);
-    //});
 
 
 

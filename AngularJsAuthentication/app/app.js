@@ -22,6 +22,11 @@ app.config(function ($routeProvider) {
         templateUrl: "/app/views/expenses.html"
     });
 
+    $routeProvider.when("/templates", {
+        controller: "templatesController",
+        templateUrl: "/app/views/templates.html"
+    });
+
     $routeProvider.otherwise({ redirectTo: "/home" });
 });
 

@@ -22,6 +22,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li data-ng-hide="!authentication.isAuth"><a href="#">Welcome {{authentication.userName}}</a></li>
                 <li data-ng-hide="!authentication.isAuth"><a href="#/expenses">My Expenses</a></li>
+                <li data-ng-hide="!authentication.isAuth"><a href="#/templates">Templates</a></li>
                 <li data-ng-hide="!authentication.isAuth"><a href="" data-ng-click="logOut()">Logout</a></li>
                 <li data-ng-hide="authentication.isAuth"> <a href="#/login">Login</a></li>
                 <li data-ng-hide="authentication.isAuth"> <a href="#/signup">Sign Up</a></li>
@@ -45,7 +46,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <p class="text-muted">Irmtraut LLC</p>
+                <p class="text-muted">Irmtraut LLC - Bootwatch "Paper Theme"</p>
             </div>
         </div>
     </div>
@@ -57,20 +58,21 @@
     <script src="scripts/angular-local-storage.min.js"></script>
     <script src="scripts/loading-bar.min.js"></script>
     <script src="scripts/jquery-1.9.1.min.js"></script>
-<script src="scripts/toastr.js"></script>
+    <script src="scripts/toastr.js"></script>
     <script src="scripts/ui-grid.js"></script>
-    <!-- Load app main script -->
+    <!-- Main app -->
     <script src="app/app.js"></script>
-    <!-- Load services -->
+    <!-- Services -->
     <script src="app/services/authInterceptorService.js"></script>
     <script src="app/services/authService.js"></script>
     <script src="app/services/expensesService.js"></script>
-    <!-- Load controllers -->
+    <!-- Controllers -->
     <script src="app/controllers/indexController.js"></script>
     <script src="app/controllers/homeController.js"></script>
     <script src="app/controllers/loginController.js"></script>
     <script src="app/controllers/signupController.js"></script>
     <script src="app/controllers/expensesController.js"></script>
+    <script src="app/controllers/templatesController.js"></script>
 </body>
 </html>
 

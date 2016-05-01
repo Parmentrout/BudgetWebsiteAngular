@@ -11,7 +11,7 @@ using AngularJsAuthentication.Repository.Repository;
 
 namespace AngularJsAuthentication.Controllers
 {
-    [RoutePrefix("api/Expenses")]
+    [RoutePrefix("api/expenses")]
     public class ExpensesController : ApiController
     {
         ExpenseRepository _repository = new ExpenseRepository();
@@ -26,16 +26,17 @@ namespace AngularJsAuthentication.Controllers
         }
 
         [HttpPost]
-        [AllowAnonymous]
+        [Route("PostExpense")]
         public async Task<IHttpActionResult> PostExpense(Expense parameter)
         {
             parameter.ModifiedDate = DateTime.Now;
             await _repository.Add(parameter);
 
-            return Ok();
+            return Ok(parameter);
         }
 
         [HttpPost]
+        [Route("DeleteExpense")]
         public async Task<IHttpActionResult> DeleteExpense(Expense parameter)
         {
             await _repository.DeleteAsync(parameter.Id);

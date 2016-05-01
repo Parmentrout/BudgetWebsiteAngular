@@ -19,7 +19,7 @@ app.factory('expensesService', ['$http', function ($http) {
         };
 
         var data = model;
-        return $http.post(serviceBase + 'api/expenses/CreateExpense',data, config).then(function (results) {
+        return $http.post(serviceBase + 'api/expenses/PostExpense', data, config).then(function (results) {
             return results;
         });
     };
@@ -35,7 +35,7 @@ app.factory('expensesService', ['$http', function ($http) {
         return $http.post(serviceBase + 'api/expenses/DeleteExpense', data, config).then(function (results) {
             return results;
         });
-    }
+    };
  
     expensesServiceFactory.getExpenses = _getExpenses;
     expensesServiceFactory.createExpense = _createExpense;
