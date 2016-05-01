@@ -1,1 +1,19 @@
-﻿{{hello}}
+﻿<label class="labels" for="template">Template: </label>
+<select id="templateSelect" name="templates" class="textBoxes" ng-model="template.templateName" ng-options="option.name for option in templates"></select>
+
+<form name="templateForm">
+    <div class="form-group">
+        <label for="chargeInput">Charge: </label>
+        <input id="chargeInput" type="text" placeholder="Charge"/>
+    </div>
+    <div class="form-group">
+        <label for="amountInput">Amount: </label>
+        <input id="amountInput" type="text" placeholder="Amount" />
+    </div>
+    <div class="form-group">
+        <label class="labels" for="categorySelection">Category: </label>
+        <select id="categorySelection" name="categories" class="textBoxes" ng-model="expense.categoryWrapper" ng-options="option.name for option in categories"></select>
+    </div>
+
+    <span class="glyphicon glyphicon-plus-sign"></span>
+</form>
