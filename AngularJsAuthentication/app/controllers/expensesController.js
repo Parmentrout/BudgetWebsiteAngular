@@ -24,9 +24,6 @@ app.controller('expensesController', [
                 }
             ];
 
-            //$scope.gridOptions.paginationPageSizes = [25, 50, 75];
-            //$scope.gridOptions.paginationPageSize = 10;
-
             $scope.expense = {};
 
             $scope.categories = [
@@ -42,31 +39,33 @@ app.controller('expensesController', [
                 { name: 'Charity' },
                 { name: 'Clothing/Wellness'}
             ];
-         
+            
+            //Read
             expensesService.getExpenses().then(function (results) {
                     $scope.gridOptions.data = results.data;
                 }, function (error) {
                     alert(error.data.message);
                 });
 
+            //Update
+            $scope.saveRow = function(rowEntity) {
+                alert(rowEntity)
+            }
 
+            //Create
             $scope.submitData = function (model){
-
                 model.Category = model.categoryWrapper.name;
-
                 expensesService.createExpense(model).then(function (results) {
-
                     $scope.gridOptions.data.push(results.data);
-
                     toastr["success"]("Saved Expense!");
                 });
             };
 
+            //Delete
             $scope.Delete = function(row) {
                 var index = $scope.gridOptions.data.indexOf(row.entity);
                 $scope.gridOptions.data.splice(index, 1);
                 var currentExpense = row.entity;
-               
                 expensesService.deleteExpense(currentExpense).then(function () {
                     toastr["success"]("Deleted Expense");
                 });
