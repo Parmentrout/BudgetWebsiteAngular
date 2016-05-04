@@ -42,6 +42,14 @@ namespace AngularJsAuthentication.Controllers
             await _repository.DeleteAsync(parameter.Id);
             return Ok();
         }
+
+        [HttpPost]
+        [Route("UpdateExpense")]
+        public async Task<IHttpActionResult> UpdateExpense(Expense parameter)
+        {
+            //await _repository.DeleteAsync(parameter.Id);
+            return Ok();
+        }
     }
 }
 

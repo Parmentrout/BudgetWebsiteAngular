@@ -48,10 +48,12 @@ app.controller('expensesController', [
                 });
 
             //Update
-            $scope.saveRow = function(rowEntity) {
-                alert(rowEntity)
-            }
+            $scope.saveRow = function (rowEntity) {
+                var promise = expensesService.updateExpense(rowEntity);
+                $scope.gridApi.rowEdit.setSavePromise($scope.gridApi.grid, rowEntity, promise);
+            };
 
+           
             //Create
             $scope.submitData = function (model){
                 model.Category = model.categoryWrapper.name;
