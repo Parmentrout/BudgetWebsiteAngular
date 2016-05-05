@@ -32,6 +32,12 @@ namespace AngularJsAuthentication.Repository.Repository
             return await _context.Expenses.FindAsync(id);
         }
 
+        public async Task<Expense> UpdateAsync(Expense entity)
+        {
+            var existing =_context.Expenses.FindAsync(entity);
+            return null;
+        }
+
         public async Task DeleteAsync(long id)
         {
             Expense model = _context.Expenses.Find(id);
