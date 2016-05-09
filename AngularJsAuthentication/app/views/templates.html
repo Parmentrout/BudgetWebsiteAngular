@@ -1,19 +1,34 @@
-﻿<label class="labels" for="template">Template: </label>
-<select id="templateSelect" name="templates" class="textBoxes" ng-model="template.templateName" ng-options="option.name for option in templates"></select>
-
-<form name="templateForm">
-    <div class="form-group">
-        <label for="chargeInput">Charge: </label>
-        <input id="chargeInput" type="text" placeholder="Charge"/>
-    </div>
-    <div class="form-group">
-        <label for="amountInput">Amount: </label>
-        <input id="amountInput" type="text" placeholder="Amount" />
-    </div>
-    <div class="form-group">
-        <label class="labels" for="categorySelection">Category: </label>
-        <select id="categorySelection" name="categories" class="textBoxes" ng-model="expense.categoryWrapper" ng-options="option.name for option in categories"></select>
+﻿<div class="container-fluid">
+    <div class="row">
+        <div class="form-inline">
+            <label class="labels" for="template">Template: </label>
+            <select id="templateSelect" name="templates" class="textBoxes" ng-model="templateName" ng-change="templateSelected()" ng-options="option.name for option in templates"></select>
+        </div>
     </div>
 
-    <span class="glyphicon glyphicon-plus-sign"></span>
-</form>
+    <form name="templateForm" ng-submit="saveTemplate(template)">
+        <div class="row" ng-repeat="(key,value) in templateRows"> <!--ng repeat here-->
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="chargeInput">Charge: </label>
+                    <input id="chargeInput" type="text" placeholder="Charge" ng-model="template.Charge" />
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="amountInput">Amount: </label>
+                    <input id="amountInput" type="text" placeholder="Amount" ng-model="template.Amount"/>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label class="labels" for="categorySelection">Category: </label>
+                    <select id="categorySelection" name="categories" class="textBoxes" ng-model="template.Category" ng-options="option.name for option in categories"></select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <span class="glyphicon glyphicon-plus-sign" style="color: green" ng-click="addRow()"></span>
+        </div>
+    </form>
+</div>

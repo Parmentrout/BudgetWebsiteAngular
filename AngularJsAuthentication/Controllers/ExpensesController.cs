@@ -47,7 +47,7 @@ namespace AngularJsAuthentication.Controllers
         [Route("UpdateExpense")]
         public async Task<IHttpActionResult> UpdateExpense(Expense parameter)
         {
-            await _repository.;
+           // await _repository.;
             return Ok();
         }
     }

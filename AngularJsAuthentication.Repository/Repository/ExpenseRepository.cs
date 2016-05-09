@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,12 +8,13 @@ using AngularJsAuthentication.Repository.Models;
 
 namespace AngularJsAuthentication.Repository.Repository
 {
-    public class ExpenseRepository
+    public class ExpenseRepository : IDisposable
     {
         readonly IBudgetContext _context = new BudgetContext();
         public async Task Add(Expense entity)
         {
-            try {
+            try
+            {
                 _context.Expenses.Add(entity);
                 await _context.SaveChangesAsync();
             }
@@ -34,8 +36,14 @@ namespace AngularJsAuthentication.Repository.Repository
 
         public async Task<Expense> UpdateAsync(Expense entity)
         {
-            var existing =_context.Expenses.FindAsync(entity);
-            return null;
+            var existing = await FindAsync(entity.Id);
+            existing.Amount = entity.Amount;
+            existing.Charge = entity.Charge;
+            existing.Category = entity.Category;
+
+            await _context.SaveChangesAsync();
+
+            return existing;
         }
 
         public async Task DeleteAsync(long id)
@@ -44,6 +52,12 @@ namespace AngularJsAuthentication.Repository.Repository
             _context.Expenses.Remove(model);
 
             await _context.SaveChangesAsync();
+        }
+
+
+        public void Dispose()
+        {
+            _context.Dispose();
         }
     }
 }

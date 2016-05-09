@@ -49,20 +49,11 @@ app.controller('expensesController', [
 
             //Update
             $scope.gridOptions.onRegisterApi = function (gridApi) {
-                //set gridApi on scope
                 $scope.gridApi = gridApi;
-                // Save each row data
                 gridApi.rowEdit.on.saveRow($scope, $scope.saveRow);
             };
 
             $scope.saveRow = function (rowEntity) {
-                //var promise = $q.defer();
-                //$scope.gridApi.rowEdit.setSavePromise(rowEntity, promise.promise);
-
-                //// fake a delay of 3 seconds whilst the save occurs, return error if gender is "male"
-                //$interval(function () {
-                //        promise.resolve();
-                //}, 3000, 1);
                 var promise = expensesService.updateExpense(rowEntity);
                 $scope.gridApi.rowEdit.setSavePromise($scope.gridApi.grid, rowEntity, promise);
             };
