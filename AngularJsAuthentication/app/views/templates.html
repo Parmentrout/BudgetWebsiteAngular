@@ -7,17 +7,17 @@
     </div>
 
     <form name="templateForm" ng-submit="saveTemplate(template)">
-        <div class="row" ng-repeat="(key,value) in templateRows"> <!--ng repeat here-->
+        <div class="row" ng-repeat="template in templateRows"> <!--ng repeat here-->
             <div class="col-md-3">
                 <div class="form-group">
                     <label for="chargeInput">Charge: </label>
-                    <input id="chargeInput" type="text" placeholder="Charge" ng-model="template.Charge" />
+                    <input id="chargeInput" type="text" placeholder="Charge" ng-model="template.charge" />
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group">
                     <label for="amountInput">Amount: </label>
-                    <input id="amountInput" type="text" placeholder="Amount" ng-model="template.Amount"/>
+                    <input id="amountInput" type="text" placeholder="Amount" ng-model="template.amount"/>
                 </div>
             </div>
             <div class="col-md-3">
@@ -30,5 +30,9 @@
         <div class="row">
             <span class="glyphicon glyphicon-plus-sign" style="color: green" ng-click="addRow()"></span>
         </div>
+        <button class="btn btn-default" type="submit"
+                ng-disabled="templateForm.$invalid">
+            Submit
+        </button>
     </form>
 </div>

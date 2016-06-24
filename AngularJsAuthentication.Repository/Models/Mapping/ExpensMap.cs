@@ -26,6 +26,7 @@ namespace AngularJsAuthentication.Repository.Models.Mapping
             this.Property(t => t.Amount).HasColumnName("Amount");
             this.Property(t => t.Category).HasColumnName("Category");
             this.Property(t => t.ModifiedDate).HasColumnName("ModifiedDate");
+            this.Property(t => t.ModifiedDate).HasColumnName("TemplateId");
         }
     }
 }

@@ -20,7 +20,7 @@ app.controller('expensesController', [
                     field: 'modifiedDate'
                 }, {
                     name: 'Delete',
-                    cellTemplate: '<span class="glyphicon glyphicon-trash" ng-click="grid.appScope.Delete(row)"></span>'//'<button class="btn btn-small" ng-click="grid.appScope.Delete(row)">Delete</button>'
+                    cellTemplate: '<span class="glyphicon glyphicon-trash" ng-click="grid.appScope.Delete(row)"></span>'
                 }
             ];
 
