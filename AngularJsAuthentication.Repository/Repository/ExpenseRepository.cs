@@ -54,7 +54,29 @@ namespace AngularJsAuthentication.Repository.Repository
             await _context.SaveChangesAsync();
         }
 
+        public async Task SaveTemplate(List<Expense> template)
+        {
+            var templateId = template.FirstOrDefault().TemplateId;
 
+            var deletes = _context.Expenses.Where(x => x.TemplateId == templateId);
+            foreach (var delete in deletes)
+            {
+                _context.Expenses.Remove(delete);
+            }
+            foreach (var row in template)
+            {
+                row.ModifiedDate = DateTime.Now;
+                _context.Expenses.Add(row);
+            }
+
+            await _context.SaveChangesAsync();
+        }
+
+        public List<Expense> GetTemplate(int templateId)
+        {
+            return _context.Expenses.Where(x => x.TemplateId == templateId).ToList();
+        } 
+        
         public void Dispose()
         {
             _context.Dispose();

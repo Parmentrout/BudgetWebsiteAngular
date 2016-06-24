@@ -20,7 +20,7 @@ namespace AngularJsAuthentication.Controllers
         [Route("")]
         public IHttpActionResult Get()
         {
-            var results = _repository.All().ToList();
+            var results = _repository.All().Where(x => x.TemplateId == null).ToList();
 
             return Ok(results);
         }
@@ -50,6 +50,24 @@ namespace AngularJsAuthentication.Controllers
             await _repository.UpdateAsync(parameter);
             return Ok();
         }
+
+        [HttpPost]
+        [Route("SaveTemplate")]
+        public async Task<IHttpActionResult> SaveTemplate(List<Expense> parameter)
+        {
+             await _repository.SaveTemplate(parameter);
+            return Ok();
+        }
+
+        [HttpPost]
+        [Route("GetTemplate")]
+        public IHttpActionResult GetTemplate(object parameter)
+        {
+            int id = Convert.ToInt32(parameter);
+            var templateData = _repository.GetTemplate(id);
+            return Ok(templateData);
+        }
+
     }
 }
 

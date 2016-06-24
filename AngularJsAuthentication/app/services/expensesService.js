@@ -61,13 +61,25 @@ app.factory('expensesService', ['$http', function ($http) {
             return results;
         });
     };
+
+    var _getTemplate = function (model) {
+        var config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
+        var data = model;
+        return $http.post(serviceBase + 'api/expenses/GetTemplate', model, config).then(function (results) {
+            return results;
+        });
+    };
  
     expensesServiceFactory.getExpenses = _getExpenses;
     expensesServiceFactory.createExpense = _createExpense;
     expensesServiceFactory.deleteExpense = _deleteExpense;
     expensesServiceFactory.updateExpense = _updateExpense;
     expensesServiceFactory.saveTemplate = _saveTemplate;
-
+    expensesServiceFactory.getTemplate = _getTemplate;
  
     return expensesServiceFactory;
  

@@ -9,27 +9,25 @@ app.controller('templatesController', [
             ];
 
             $scope.categories = [
-               { name: 'To Savings' },
-               { name: 'Bills' },
-               { name: 'Groceries' },
-               { name: 'Gas' },
-               { name: 'Coffee' },
-               { name: 'Baby' },
-               { name: 'Misc' },
-               { name: 'Home' },
-               { name: 'Restaurants' },
-               { name: 'Charity' },
-               { name: 'Clothing/Wellness' }
+               'To Savings', "Bills", 'Restaurants', 'Groceries', 'Gas', 'Coffee', 'Home'
             ];
         $scope.templateRows = [];
         
-        $scope.saveTemplate = function() {
-           //Persist templateRows to db
+        $scope.saveTemplate = function () {
+            var model = $scope.templateRows;
+
+            for (var i = 0; i < model.length; i++) {
+                model[i].TemplateId = $scope.templateName.value;
+            }
+
+            expensesService.saveTemplate(model);
         };
 
-        $scope.templateSelected = function() {
-            alert($scope.templateName.value);
-        };
+        $scope.templateSelected = function () {
+            //Get template data
+            expensesService.getTemplate($scope.templateName.value).then(function (results) {
+                $scope.templateRows = results.data;
+        })};
 
         $scope.addRow = function () {
             $scope.templateRows.push({});

@@ -12,7 +12,7 @@ namespace AngularJsAuthentication.Repository.Models
         public decimal Amount { get; set; }
         public string Category { get; set; }
         public System.DateTime ModifiedDate { get; set; }
-        public int TemplateId { get; set; }
+        public int? TemplateId { get; set; }
 
         [NotMapped]
         public string ModifiedDateStr { get; set; }
